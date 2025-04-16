@@ -33,6 +33,11 @@ interface SaveMessageDto{
     message:string;
 }
 
+interface WebsocketChatRequest{
+    message:SaveMessageDto;
+    userfriend:string;
+}
+
 interface MessageDto{
     id:number;
     message:string;

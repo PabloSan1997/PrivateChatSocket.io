@@ -45,7 +45,7 @@ export const messageService: MessageService = {
                 usersend: true
             },
             order: {
-                createdAt: 'DESC'
+                createdAt: 'ASC'
             }
         });
         return message.map(p => ({ ...p, usersend: converUser(p.usersend), userrecive: converUser(p.userrecive) }));

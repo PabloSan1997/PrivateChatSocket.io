@@ -12,9 +12,20 @@ export const messageController = {
     },
     async findMessages(req: Request, res: Response, next: NextFunction) {
         try {
-            const {userfriend} = req.params as {userfriend:string};
+            const { userfriend } = req.params as { userfriend: string };
             const datos = messageService.findMessage(req.query.username as string, userfriend);
             res.json(await datos);
+        } catch (error) {
+            next(error);
+        }
+    },
+    async deleteMessage(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id} = req.params as { id:string };
+            if(!isNaN(Number(id))){
+                await messageService.deleteMessage(req.query.username as string, req.query.userfriend as string, Number(id));
+            }
+            res.sendStatus(204);
         } catch (error) {
             next(error);
         }
