@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { readApi } from "../api/readApi";
 import { UseContextProvider } from "../ContextProvider";
