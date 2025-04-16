@@ -10,7 +10,7 @@ export function jwtHandle(rolesname: string[]) {
         else {
             const token = header.replace('Bearer ', '');
             const data = await jwtService.validationToken(token);
-            req.query.username = data.username;
+            req.params.mainuser = data.username;
             if (viewRoles(data.roles, rolesname))
                 next()
             else

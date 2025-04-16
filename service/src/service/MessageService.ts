@@ -2,7 +2,6 @@ import boom from '@hapi/boom';
 import { AppDataSource } from '../persistence/AppDataSource';
 import { Users } from '../persistence/models/Users';
 import { MessageEntity } from '../persistence/models/Message';
-import { badRequest } from 'boom';
 import { Not } from 'typeorm';
 
 const converUser = ({ username, nickname, urlImage }: Users): UserInfoHeader => ({ username, nickname, urlImage });
@@ -69,7 +68,7 @@ export const messageService: MessageService = {
 
 async function findUserByUsename(username: string): Promise<Users> {
     const user = await userrepository.findOne({ where: { username } });
-    if (!user) throw badRequest('Usuario no encontrado');
+    if (!user) throw boom.badRequest('Usuario no encontrado');
     return user;
 }
 
