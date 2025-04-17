@@ -61,7 +61,7 @@ export const readApi: ReadApi = {
 
         return ft.json();
     },
-    async findMessages(token: string, userfriend: string): Promise<MessageDto> {
+    async findMessages(token: string, userfriend: string): Promise<MessageDto[]> {
         const ft = await fetch(`${urlconnection.httpconnect}/api/message/${userfriend}`, {
             method: 'GET',
             headers: {

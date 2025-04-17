@@ -59,7 +59,7 @@ interface ReadApi{
     login(data:LoginDto):Promise<TokenDto>;
     regisger(data:SignUpDto):Promise<TokenDto>;
     findUsers(token:string):Promise<UserInfoHeader[]>;
-    findMessages(token:string, userfriend:sring):Promise<MessageDto>;
+    findMessages(token:string, userfriend:sring):Promise<MessageDto[]>;
     deleteMessage(token:string, userfriend:string, id:number):Promise<void>;
     findUserInfo(token:string):Promise<UserInfoHeader>;
 }

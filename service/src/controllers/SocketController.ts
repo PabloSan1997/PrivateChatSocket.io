@@ -29,7 +29,6 @@ export function socketController(io:SocketIoServcer){
         socket.join(username);
         socket.on('mandar', async (req:WebsocketChatRequest)=>{
            try {
-            const username = socket.data.user;
             const mensaje = await messageService.saveMessage(username, req.userfriend, req.message);
             io.to(username).emit('mandar', mensaje);
             io.to(req.userfriend).emit('mandar', mensaje);

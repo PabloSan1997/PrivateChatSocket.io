@@ -1,6 +1,6 @@
 import { envVariables } from "../envVariables";
-import { Users } from "../persistence/models/Users";
 import jose from 'jose';
+import boom from '@hapi/boom';
 
 const secret = new TextEncoder().encode(envVariables.jwt);
 
@@ -29,7 +29,7 @@ export const jwtService = {
             return payload as FullUserToken;
 
         } catch (error) {
-            throw new Error('validation error');
+            throw boom.badRequest('No se puede');
         }
     }
 }

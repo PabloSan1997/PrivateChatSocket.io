@@ -24,9 +24,12 @@ export function ContextProvider({ children }: Children) {
     const [token, setToken] = React.useState(thestorage.read());
     const [userinfo, setUserInfo] = React.useState<UserInfoHeader>({ username: "", nickname: "", urlImage: "" });
 
-    React.useEffect(()=>{
-        readApi.findUserInfo(token).then(setUserInfo).catch(console.error);
-    },[token]);
+    React.useEffect(() => {
+        readApi.findUserInfo(token).then(setUserInfo).catch(err => {
+            const error = err as ErrorDto;
+            if (error.statusCode == 400) logout();
+        });;
+    }, [token]);
 
     const login = (data: LoginDto) => {
         readApi.login(data).then(res => {
